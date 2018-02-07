@@ -26,15 +26,15 @@
 	const store = createStore(fn);
 	const state = store.getState();
 
-createStore函数接受另一个函数作为参数，返回新生成的 Store 对象。
-当前时刻的 State，可以通过store.getState()拿到。
-一个state对应一个view。state相同则view相同。
+createStore函数接受另一个函数作为参数，返回新生成的 Store 对象。  
+当前时刻的 State，可以通过store.getState()拿到。  
+一个state对应一个view。state相同则view相同。  
 
 ## Action
 
-State 的变化，会导致 View 的变化。但是，用户接触不到 State，只能接触到 View。
-所以，State 的变化必须是 View 导致的。Action 就是 View 发出的通知，表示 State 应该要发生变化了。
-Action 是一个对象。其中的type属性是必须的，表示 Action 的名称。payload为action携带的字符串。
+State 的变化，会导致 View 的变化。但是，用户接触不到 State，只能接触到 View。  
+所以，State 的变化必须是 View 导致的。Action 就是 View 发出的通知，表示 State 应该要发生变化了。  
+Action 是一个对象。其中的type属性是必须的，表示 Action 的名称。payload为action携带的字符串。  
 
 	const action = {
 	 	 type: 'ADD_TODO',
@@ -56,16 +56,16 @@ View 要发送多少种消息，就会有多少种 Action。定义一个函数�
 
 ## store.dispatch
 
-store.dispatch()是 View 发出 Action 的唯一方法。（作用类似于Ajax的send（）函数）
+store.dispatch（）是 View 发出 Action 的唯一方法。（作用类似于Ajax的send（）函数）
 
 	store.dispatch({
 	 	type: 'ADD_TODO',
 	  payload: 'Learn Redux'
 	});
 
-store.dispatch接受一个 Action 对象作为参数，将它发送出去。
-结合 Action Creator，这段代码可以改写如下。
-store.dispatch(addTodo('Learn Redux'));
+store.dispatch接受一个 Action 对象作为参数，将它发送出去。  
+结合 Action Creator，这段代码可以改写如下。  
+store.dispatch(addTodo('Learn Redux'));  
 
 ## Reducer
 

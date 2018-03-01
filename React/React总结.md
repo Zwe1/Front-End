@@ -1,8 +1,10 @@
 # 基本使用方法（v16.0.x）
 ## 核心语法
 * JSX : 形如HTML和Javascript的组合，是一种 JavaScript 的语法扩展。
-* JSX有如同HTML一般的写法，符合你的写作习惯，表达式需要包含在大括号里。
-    <h1>Hello, {formatName(user)}!</h1>
+* JSX有如同HTML一般的写法，符合你的写作习惯，表达式需要包含在大括号里。 
+```
+  <h1>Hello, {formatName(user)}!</h1>
+```
 * JSX 的特性更接近 JavaScript 而不是 HTML , 所以 React DOM 使用 camelCase 小驼峰命名 来定义属性的名称，而不是使用 HTML 的属性名称。
 * JSX 允许直接在模板插入 JavaScript 变量。如果这个变量是一个数组，则会展开这个数组的所有成员。
 * **虚拟DOM的特点：** 
@@ -10,21 +12,21 @@
 * React核心diff算法比较Dom树的最小化差异, 只重新渲染发生变化的Dom树局部, 提高渲染效率。
 ### JSX 代表 Objects
 * Babel 转译器会把 JSX 转换成一个名为 React.createElement() 的方法调用。
-
+```
   const element = (
     <h1 className="greeting">
       Hello, world!
     </h1>
   );
-
+```
   运行效果同下：
-
+```
   const element = React.createElement(
     'h1',
     {className: 'greeting'},
     'Hello, world!' 
   );
-
+```
 ### 元素渲染
 * 如上，元素事实上只是构成组件的一个部分。通过ReactDom.render()方法来将元素渲染到页面上。
 * 技巧：**将界面视为一个个特定时刻的固定内容**（就像一帧一帧的动画），而不是随时处于变化之中（而不是处于变化中的一整段动画）将会有利于我们理清开发思路，减少各种bugs。
@@ -33,11 +35,11 @@
 * **定义**：组件从概念上看就像是函数，它可以接收任意的输入值（称之为“props”），并返回一个需要在页面上展示的React元素。 
 
   *定义一个组件最简单的方式是使用JavaScript函数：*
-
+```
   function Welcome(props) {
     return <h1>Hello, {props.name}</h1>;
   }
-
+```
 * 组件类的第一个字母必须大写，只能有一个顶层标签。
 * 所有组件类都必须有自己的render方法，用于输出组件。
 ### Props

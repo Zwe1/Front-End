@@ -43,23 +43,22 @@
 * 组件类的第一个字母必须大写，只能有一个顶层标签。
 * 所有组件类都必须有自己的render方法，用于输出组件。
 ### Props
-* ***所有的React组件必须像纯函数那样使用它们的props。无法对Props进行写操作***
+* ***所有的React组件必须像纯函数那样使用它们的props，无法对Props进行写操作。**
 * class属性需要写成className,for属性需要写成htmlFor。
 * this.props 作为组件的数据入口，而 this.state 是运转于组件内部的流通数据。
 * react的单项数据流，以props作为组件注入口，实现组件间的通信入口，从父组件到子组件的单向注入。  
 
-## React组件生命周期
-Mounting ：已插入真实DOM
-Updating：正在被重新渲染
-Unmounting：已移出真实DOM	
-
+## React组件生命周期（常用）
+componentDidMount: 组件挂载完成后  
+componentWillReceiveProps：组件props发生变化(深层次变化存在检测不到的清空)  
+shouldComponentUpdate: 性能优化点，设置返回值为false，在不需要是阻止组件重新渲染。
 ## ***React 理念***
 >React的众多优点之一是它让你在编写代码的时候同时也在*思考你的应用*。
 #### 构建一个应用的基本思路：
 1. 第一步：把 UI 划分出组件层级
 >UI 和数据模型往往遵循着相同的信息架构，这意味着将 UI 划分成组件的工作往往是很容易的。只要把它划分成能准确表示你数据模型的一部分的组件就可以。
 2. 第二步：用 React 创建一个静态版本
->现在有了组件层级，是时候去实现你的应用了。最简单的方式是先创建一个静态版本：传入数据模型，渲染 UI 但没有任何交互.***在较为简单的例子中，通常自顶向下更容易，而在较大的项目中，自底向上会更容易并且在你构建的时候有利于编写测试。**
+>现在有了组件层级，是时候去实现你的应用了。最简单的方式是先创建一个静态版本：传入数据模型，渲染 UI 但没有任何交互。***在较为简单的例子中，通常自顶向下更容易，而在较大的项目中，自底向上会更容易并且在你构建的时候有利于编写测试。**
 3. 第三步：定义 UI 状态的最小(但完整)表示
 >为了正确构建你的应用，首先你需要考虑你的应用所需要的最小可变状态集。要点是 DRY：不要重复(Don’t Repeat Yourself)。找出应用程序的绝对最小表示并计算你所需要的其他任何请求。例如，如果你正在创建一个 TODO 列表，只要保存一个包含 TODO 事项的数组；不要为计数保留一个单独的状态变量。相反，当你想要渲染 TODO 计数时，只需要使用 TODO 数组的长度就可以了。
 4. 第四步：确定你的 State 应该位于哪里
@@ -71,7 +70,7 @@ Unmounting：已移出真实DOM
 
 1. this.props.children 属性，它表示组件的所有子节点，props.children 可以像其它属性一样传递任何数据，而不仅仅是 React 元素（字符串，数组，react元素）。
 
-2. 组件类的PropTypes属性，用来验证组件的输入props属性是否符合要求。用于规范组件输入。(V15.5+ 使用 prop-types 库)
+2. 组件类的PropTypes属性，用来验证组件的输入props属性是否符合要求。用于规范组件输入。(**V15.5+ 使用 prop-types 库**)
 ``` 
  propTypes: {
     title: React.PropTypes.string.isRequired,
@@ -83,7 +82,7 @@ Unmounting：已移出真实DOM
 
 5. React 中一个常见模式是为一个组件返回多个元素。Fragments 可以让你聚合一个子元素列表，并且不在DOM中增加额外节点。**形如:<></>**
 
-#### Portals
+### Portals
 
 ```
 ReactDOM.createPortal(child, container)
@@ -92,11 +91,11 @@ Portals 提供了一种很好的将子节点渲染到父组件以外的 DOM 节�
 
 **应用**：对于 portal 的一个典型用例是当父组件有 overflow: hidden 或 z-index 样式，但你需要子组件能够在视觉上“跳出（break out）”其容器。例如，对话框、hovercards以及提示框。(如antd中Select,Dropdown,Modal等组件的实现)
 
-#### Error Boundaries 错误边界
+### Error Boundaries 错误边界
 
 **目的**：用于捕获其子组件树 JavaScript 异常，记录错误并展示一个回退的UI的React组件，避免因局部错误导致整个组件树的异常。
 
-**标志**: 如果一个类组件定义了一个名为 componentDidCatch(error, info): 的新方法，则其成为一个错误边界
+**标志**: 如果一个类组件定义了一个名为 componentDidCatch(error, info) 的新方法，则其成为一个错误边界
 ```
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -120,18 +119,18 @@ class ErrorBoundary extends React.Component {
   }
 }
 ```
-而后你可以像一个普通的组件一样使用：
+而后可以像一个普通的组件一样使用：
 ```
 <ErrorBoundary>
   <MyWidget />
 </ErrorBoundary>
 ```
 
-#### 高阶组件
+### 高阶组件
 
 * 将逻辑相似或共通的组件抽离出来，从容器层向内注入差异化数据模型。高阶组件是通过将原组件包裹在容器组件里面的方式来组合使用原组件。高阶组件就是一个没有副作用的纯函数。为统一逻辑的内层组件提供数据入口，并返回一个定制化类似组件。（如Redex中的connect）
 
-# 构建高质量代码的关键（暂定位于此）
+## 构建高质量代码的关键（暂定位于此）
 
 #### 三点关键 
 1. 可读性  

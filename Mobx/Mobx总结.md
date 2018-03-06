@@ -18,4 +18,15 @@
 更改状态，根据你的需要，变动你的数据模型。变动后的数据会反馈到视图上，重新渲染必要的部门。  
 **Tips:** 在mobx中我们通过action来修饰数据控制器，尽量标准化你的代码，仅在acion中修改你的数据模型。
 
+## API
 
+**Observable**  
+* 对象上只有初始化时便存在的属性会被观察到变化，创建**键是动态的对象**使用**Observable Map**。
+* @observable key = value 同 extendObservable(this, { key: value })  
+
+**computed**  
+>计算值是可以根据现有的状态或其它计算值衍生出的值。无需常见新的observable变量来存储，类似于excel的公式。  
+**Tips:** computed创建的函数只有当它有自己的观察者时才会重新计算。
+
+**Autorun**
+>autorun创建的响应式函数，**本身不会有观察者**。使用autorun时，函数立即被触发一次，**每次它的依赖数据改变时**会再次被触发。

@@ -35,4 +35,29 @@
 **Stores**  
 主要职责: 将**逻辑**和**状态**从组件中移至一个独立的，可测试的单元。  
 
+## 优化React组件渲染  
 
+* 使用大量的**小组件**，组件越小，重新渲染产生的变化越小。 
+* 在**专用组件中渲染列表**，react协调（差异树比较算法）十分损耗性能。用单独的组件**只渲染**列表，使其渲染环境闭合。  
+* **不要使用数组索引或可能改变的值作为key。**  
+* 尽量晚的使用间接引用值。  
+快的：```<DisplayName person={person} />```  
+慢的：```<DisplayName name={person.name} />```  
+name属性变化时，第一种情况只会触发**DisplayName**组件重新渲染，第二张情况**DisplayName**的父组件也需要重新渲染。  
+* 尽早绑定函数。  
+不好的：
+```
+render() {
+    return <MyWidget onClick={() => { alert('hi') }} />
+}
+```  
+好的：  
+```
+render() {
+    return <MyWidget onClick={this.handleClick} />
+}
+
+handleClick = () => {
+    alert('hi')
+}
+```

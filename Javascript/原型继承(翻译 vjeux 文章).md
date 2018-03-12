@@ -1,6 +1,6 @@
 ## Javascript——原型继承是如何实现的
 
-在网页上我们随处可见讲到javascript是一种原型继承。然而javascript仅仅默认地在new操作符这种特殊情况下提供了原型继承。因此，许多js的解读都让人感到很迷惑。
+在网页上我们随处可见说javascript是一种原型继承。然而javascript仅仅默认地在使用new操作符的这种特殊情况下提供了原型继承。因此，许多js的解读都让人感到很迷惑。
 这篇文章用于阐述什么是原型继承以及如何在js中使用原型继承。
 
 ### 原型继承的定义
@@ -94,5 +94,42 @@ console.log(p1 instanceof Point); // true
 var p2 = New (Point)(10, 20);
 p2.print(); // 10 20
 console.log(p2 instanceof Point); // true
-```   
+```  
+### js中真正的原型继承  
+js规范仅为我们提供了 new 操作符可以使用。Douglas Crockford 找到了一种利用 new 操作符来实现原型继承的方法！他创造了 Object.create 函数。  
+```
+Object.create = function (parent) {
+  function F() {}
+  F.prototype = parent;
+  return new F();
+};
+```  
+这种写法看起来很奇怪但它的工作原理很简单。它仅仅根据设置在这个函数上的原型来创建了一个新的对象。如果我们可以使用 _proto_ 它的写法将会是这个样子：  
+```
+Object.create = function (parent) {
+  return { '__proto__': parent };
+};
+```
+下面的代码是我们使用真正的原型继承来创建的一个点。
+```
+var Point = {
+  x: 0,
+  y: 0,
+  print: function () { console.log(this.x, this.y); }
+};
+ 
+var p = Object.create(Point);
+p.x = 10;
+p.y = 20;
+p.print(); // 10 20
+```
+### 结论
+我们看到了究竟什么是原型继承并且看到了 js 仅仅是用了一种特别的方法来实现它。  
+然而，使用原型继承（Object.create and _proto_）也存在一些缺点：  
+* **非标准**：_proto_ 不是标准化的东西甚至被弃用。原生的 Object.create 和 Douglas Crockford 的实现也不完全相同。  
+* **未优化**：与 new 构造函数（原生或自定义）相比Object.create 还没有被深度严格优化, 后者甚至慢十倍。  
+
+### 另外  
+如果你能够通过下面的图理解原型继承是如何工作的，Congratulations！  
+<img src="http://i.imgur.com/cCzkv.png"/>   
 

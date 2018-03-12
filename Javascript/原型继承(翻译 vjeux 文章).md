@@ -132,4 +132,5 @@ p.print(); // 10 20
 ### 另外  
 如果你能够通过下面的图理解原型继承是如何工作的，Congratulations！  
 <img src="http://i.imgur.com/cCzkv.png"/>   
-
+  
+<h3><a href="http://blog.vjeux.com/2011/javascript/how-prototypal-inheritance-really-works.html">Vjeux英文原文链接</a></h3>

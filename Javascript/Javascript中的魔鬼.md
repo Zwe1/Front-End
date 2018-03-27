@@ -178,11 +178,45 @@ forEach(fn(item, index))方法接收一个函数作为参数，这个函数接�
     },10);
     console.log(res1);
 ```   
-| content | 初始值curr | 当前元素next | 当前元素索引index | 当前元素所属数组arr | 初始值 |
+| content | 初始值（curr） | 当前元素（next） | 当前元素索引（index） | 当前元素所属数组（arr） | 函数初始值 |
 | --------| :-----:   | :----:       |  :----:          |  :----:           | :----: |
 | content | 10        | 1            | 0                | [1, 2, 3, 4, 5]   | 10     |
 | content | 11        | 2            | 1                | [1, 2, 3, 4, 5]   | 10     |
 | content | 13        | 3            | 2                | [1, 2, 3, 4, 5]   | 10     |
 | content | 16        | 4            | 3                | [1, 2, 3, 4, 5]   | 10     |
-| content | 20        | 5            | 4                | [1, 2, 3, 4, 5]   | 10     |
+| content | 20        | 5            | 4                | [1, 2, 3, 4, 5]   | 10     |  
+
+reduce方法用于对数组进行累积化操作，常用于数组求和。接收两个参数，第一个参数为操作函数，第二个参数为函数初始值。对于数组的操作不会修改原始值。  
+
+**filter**
+```
+    var res = arr1.filter((item, index) => {
+        console.log('data:',index,item);
+        return item > 3
+    });
+    console.log(res);
+    //  [4, 5]
+```  
+filter方法用于过滤数组的每一项，删选出符合条件的项，并组成一个新的数组。  
+
+**every**  
+```
+    var res = arr1.every((item, index) => {
+        return item > 3
+    });
+    console.log(res);
+    // false
+```
+every方法用于检查数组的每一项是否符合条件，全部符合条件时返回true,否则返回false。  
+
+**some**  
+```
+    var res = arr1.some((item, index) => {
+        return item > 3
+    });
+    console.log(res);
+    // true
+```  
+some方法用于检查数组中的是否存在符合条件的项，存在则返回true,否则返回false。 
+
 

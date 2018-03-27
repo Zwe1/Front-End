@@ -4,7 +4,7 @@
 
 这篇文章用于总结一些javascript语言中常见的易混淆点。
 
-### call apply bind
+### call | apply | bind
 
 在js中，最诡异莫测的莫过于this了，理解的不够深入或是应用场景略微复杂，使用时就会出现各种意想不到的错误。所以，在很多时候，我们需要手动指定上下文环境，来修正this的指向。  
 最简单判断this所在环境的方法是，寻找this的实际调用者。  
@@ -71,7 +71,7 @@ bind同样可以用来修正this的指向，它与以上二者的区别在于，
 如此，便可以如愿得到你想要的效果了。使用bind方法可以延缓函数的执行时间，在你想调用时再执行函数。  
 bind方法同样可以传入其它参数，和call方法的传入方式相同。  
 
-### splice slice split  
+### splice | slice | split  
 
 看到这三个方法有没有头晕目眩的感觉？因为它们三个实在是太像三胞胎了，真的很难区分。首先，我们来学习或是回顾一下这三个单词。
 ```
@@ -119,7 +119,7 @@ splice(starts, count, item1, ..., itemx)方法接受多个参数,第一个参数
 split(separator, count)方法可接受两个参数，第一个参数为分割符，用于指定字符串的分割规则，第二个参数为返回数组的最大长度，返回的输出长度不会大于这个参数。  
 **注意**: split不会修改原始字符串，返回值为新数组。  
 
-### map forEach reduce filter every some  
+### map | forEach | reduce | filter | every | some  
 
 这六个方法时常用的操作数组的api，均为Array.prototype的本地方法。所以一切数组均可使用这些方法遍历操作数组的每一项，下面将逐一介绍这些方法。  
 

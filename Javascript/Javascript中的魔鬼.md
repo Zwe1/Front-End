@@ -217,6 +217,10 @@ every方法用于检查数组的每一项是否符合条件，全部符合条件
     console.log(res);
     // true
 ```  
-some方法用于检查数组中的是否存在符合条件的项，存在则返回true,否则返回false。 
+some方法用于检查数组中的是否存在符合条件的项，存在则返回true,否则返回false。  
+
+### 另外  
+一副生动有趣的图解，everyday will be better！  
+<img src="https://pic4.zhimg.com/80/f18b33adf235b721b009eddbc00645e9_hd.jpg"/>    
 
 
